@@ -76,6 +76,7 @@ void is_pause()
                     }
                     else if(ch == 0x1B)    
                     {
+                        mciSendString(_T("close bgm"), NULL, 0, NULL);
                         is_play = false;
                         is_welcome = true;
                         break;
@@ -424,6 +425,10 @@ void Hero_death_animation(HERO &hero,IMAGE heroimg[])
 {
     transparentimage(hero.GetRect().left,hero.GetRect().top,heroimg[1]);
     FlushBatchDraw();
+    //mciSendString(_T("close bgm"), NULL, 0, NULL);
+    mciSendString(_T("open ./airplane_battle/music/me_down.mp3 alias sfx"), NULL, 0, NULL);
+    mciSendString(_T("play sfx"), NULL, 0, NULL);    
+    mciSendString(_T("close bgm"), NULL, 0, NULL);
 }
 
 //µÐ»úËÀÍö¶¯»­
@@ -986,25 +991,29 @@ void Play()
     setbkcolor(WHITE);
     cleardevice();      // ÓÃ±³¾°É«Çå¿ÕÆÁÄ»
 
+    mciSendString(_T("open ./airplane_battle/music/game_music.mp3 alias bgm"), NULL, 0, NULL);
+    mciSendString(_T("play bgm repeat"), NULL, 0, NULL);
+    mciSendString(_T("close sfx"), NULL, 0, NULL);
+    
     //Í¼Æ¬ËØ²Ä¼ÓÔØ
     IMAGE heroimg[2],enemyimg[2],enemybossimg[2],enemybigbossimg[2],bgimg,bulletimg[2],ebulletimg[2],buffimg[3]; 
-    loadimage(&heroimg[0],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\me1.png"),heroimg[0].getwidth(),heroimg[0].getheight());
-    loadimage(&heroimg[1],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\me_destroy_3.png"),heroimg[1].getwidth(),heroimg[1].getheight());
-    loadimage(&enemyimg[0],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\enemy1.png"),enemyimg[0].getwidth(),enemyimg[0].getheight());
-    loadimage(&enemyimg[1],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\enemy1_down3.png"),enemyimg[1].getwidth(),enemyimg[1].getheight());
-    loadimage(&enemybossimg[0],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\enemy2.png"),enemybossimg[0].getwidth(),enemybossimg[0].getheight());
-    loadimage(&enemybossimg[1],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\enemy2_down3.png"),enemybossimg[1].getwidth(),enemybossimg[1].getheight());
-    loadimage(&enemybigbossimg[0],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\enemy3_n1.png"),enemybigbossimg[0].getwidth(),enemybigbossimg[0].getheight());
-    loadimage(&enemybigbossimg[1],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\enemy3_down5.png"),enemybigbossimg[1].getwidth(),enemybigbossimg[1].getheight());
-    loadimage(&bgimg,_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\bk.png"),WIDTH,HEIGHT * 2);
-    loadimage(&bulletimg[0],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\bullet2.png"),bulletimg[0].getwidth(),bulletimg[0].getheight());
-    loadimage(&bulletimg[1],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\bomb.png"),bulletimg[1].getwidth(),bulletimg[1].getheight());
-    loadimage(&ebulletimg[0],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\bullet1.png"),ebulletimg[0].getwidth(),ebulletimg[0].getheight());
-    loadimage(&ebulletimg[1],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\bomb1.png"),ebulletimg[1].getwidth(),ebulletimg[1].getheight());
-    loadimage(&buffimg[0],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\hp_supply.png"),buffimg[0].getwidth(),buffimg[0].getheight());
-    loadimage(&buffimg[1],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\bullet_supply.png"),buffimg[1].getwidth(),buffimg[1].getheight());
-    loadimage(&buffimg[2],_T("X:\\download\\c++learn\\c++project\\airplane_battle\\images\\bomb_supply.png"),buffimg[2].getwidth(),buffimg[2].getheight());
-
+    loadimage(&heroimg[0],_T("./airplane_battle/images/me1.png"),heroimg[0].getwidth(),heroimg[0].getheight());
+    loadimage(&heroimg[1],_T("./airplane_battle/images/me_destroy_3.png"),heroimg[1].getwidth(),heroimg[1].getheight());
+    loadimage(&enemyimg[0],_T("./airplane_battle/images/enemy1.png"),enemyimg[0].getwidth(),enemyimg[0].getheight());
+    loadimage(&enemyimg[1],_T("./airplane_battle/images/enemy1_down3.png"),enemyimg[1].getwidth(),enemyimg[1].getheight());
+    loadimage(&enemybossimg[0],_T("./airplane_battle/images/enemy2.png"),enemybossimg[0].getwidth(),enemybossimg[0].getheight());
+    loadimage(&enemybossimg[1],_T("./airplane_battle/images/enemy2_down3.png"),enemybossimg[1].getwidth(),enemybossimg[1].getheight());
+    loadimage(&enemybigbossimg[0],_T("./airplane_battle/images/enemy3_n1.png"),enemybigbossimg[0].getwidth(),enemybigbossimg[0].getheight());
+    loadimage(&enemybigbossimg[1],_T("./airplane_battle/images/enemy3_down5.png"),enemybigbossimg[1].getwidth(),enemybigbossimg[1].getheight());
+    loadimage(&bgimg,_T("./airplane_battle/images/bk.png"),WIDTH,HEIGHT * 2);
+    loadimage(&bulletimg[0],_T("./airplane_battle/images/bullet2.png"),bulletimg[0].getwidth(),bulletimg[0].getheight());
+    loadimage(&bulletimg[1],_T("./airplane_battle/images/bomb.png"),bulletimg[1].getwidth(),bulletimg[1].getheight());
+    loadimage(&ebulletimg[0],_T("./airplane_battle/images/bullet1.png"),ebulletimg[0].getwidth(),ebulletimg[0].getheight());
+    loadimage(&ebulletimg[1],_T("./airplane_battle/images/bomb1.png"),ebulletimg[1].getwidth(),ebulletimg[1].getheight());
+    loadimage(&buffimg[0],_T("./airplane_battle/images/hp_supply.png"),buffimg[0].getwidth(),buffimg[0].getheight());
+    loadimage(&buffimg[1],_T("./airplane_battle/images/bullet_supply.png"),buffimg[1].getwidth(),buffimg[1].getheight());
+    loadimage(&buffimg[2],_T("./airplane_battle/images/bomb_supply.png"),buffimg[2].getwidth(),buffimg[2].getheight());
+    
     srand(time(0));
     BG bg(bgimg);
     HERO hero(heroimg[0]);
@@ -1081,17 +1090,8 @@ void Over(unsigned long long &kill)
 
 int main()
 {
-    TCHAR fullPath[] = _T("x:\\download\\c++learn\\c++project\\airplane_battle\\music\\game_music.mp3");
-    TCHAR shortPath[MAX_PATH];
-    GetShortPathName(fullPath, shortPath, MAX_PATH);
-
-    TCHAR mciCmd[512];
-    // ¹¹ÔìÃüÁî£ºopen "XP~1.MP3" type mpegvideo alias bgm
-    _stprintf(mciCmd, _T("open \"%s\" type mpegvideo alias bgm"), shortPath);
-
-    mciSendString(_T("close bgm"), NULL, 0, NULL);
-    mciSendString(mciCmd, NULL, 0, NULL);
-    mciSendString(_T("play bgm repeat"), NULL, 0, NULL);
+    // mciSendString(_T("open ./airplane_battle/music/game_music.mp3 alias bgm"), NULL, 0, NULL);
+    // mciSendString(_T("play bgm repeat"), NULL, 0, NULL);
 
     initgraph(WIDTH,HEIGHT);
     bool is_live = true;
