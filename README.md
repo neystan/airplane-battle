@@ -1,2 +1,2 @@
 # airplane-battle
-一个基于cpp、EasyX的飞机大战游戏
+一款基于cpp、EasyX的飞机大战游戏
