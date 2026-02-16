@@ -1,0 +1,50 @@
+# 编译产物
+*.exe
+*.o
+*.obj
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# 调试文件
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# 编译器生成的文件
+*.gch
+*.pch
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# 输出文件夹
+output/
+build/
+bin/
+
+# 临时文件
+*.tmp
+*.temp
+*.log
+*~
+
+# Windows垃圾文件
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS垃圾文件
+.DS_Store
+.AppleDouble
+.LSOverride

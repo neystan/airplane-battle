@@ -1,0 +1,16 @@
+{
+    "C_Cpp_Runner.compilerArgs": [
+        "-I\"X:\\mingw64\\include\""
+    ],
+    "C_Cpp_Runner.linkerArgs": [
+        "-L\"X:\\mingw64\\lib\"",
+        "-leasyx"
+    ],
+    "C_Cpp_Runner.includePaths": [
+        "X:\\mingw64\\include"
+    ],
+    "C_Cpp_Runner.useLinkTimeOptimization": false,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ -g $fileName -I\"X:\\mingw64\\include\" -L\"X:\\mingw64\\lib\" -leasyx -o $fileNameWithoutExt.exe && $dir$fileNameWithoutExt.exe"
+    }
+}
